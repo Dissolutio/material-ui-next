@@ -1,25 +1,25 @@
-import "../styles/globals.css";
+import "../styles/globals.css"
 
-import { Provider } from "react-redux";
-import type { AppProps } from "next/app";
+import { Provider } from "react-redux"
+import type { AppProps } from "next/app"
 
-import store from "../app/store";
+import store from "../app/store"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <Component {...pageProps} />
     </Provider>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
 
-import React from "react";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import Logo from "../assets/Logo";
+import React from "react"
+import { AppBar, Toolbar, Typography } from "@material-ui/core"
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
+import AccountCircleIcon from "@material-ui/icons/AccountCircle"
+import Logo from "../assets/Logo"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,10 +33,10 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
   })
-);
+)
 
 function StorybookAppBar(): JSX.Element {
-  const classes = useStyles();
+  const classes = useStyles()
 
   // eslint-disable-next-line unicorn/no-null
   return (
@@ -65,5 +65,5 @@ function StorybookAppBar(): JSX.Element {
         />
       </Toolbar>
     </AppBar>
-  );
+  )
 }
