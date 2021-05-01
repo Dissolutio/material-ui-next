@@ -1,9 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto:wght@400;500&display=swap');
+html {
+  /* COLOR PALLETTE */
+  --white: #FFFFFF;
+  --offWhite: #fefff7;
+  --slate0: #465062;
+  --slate1: #3f4754;
+  --slate2: #313846;
+  --slate3: #262c38;
+  --slate4: #1e232c;
+  --slate5: #1a1e26;
+  --slate6: #161a21;
+  --lightGray1: #bebfbb;
+  --lightGray2: #b2b3b1;
+  --lightGray3: #8c8c8b;
+  --lightGray4: #626261;
+  --orange: #f56155;
+  --green: #8ced61;
+  --blue: #3576b7;
+  --skyBlue: #48A3ff;
+  --primaryButton: #3576b7;
+  --secondaryButton: #B2B3B1;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
+  box-sizing: border-box;
+  max-width: 100vw;
+  min-height: 100vh;
+  /* mobile viewport bug fix */
+  min-height: -webkit-fill-available;
+  max-width: -webkit-fill-available;
+  background-color: var(--slate3);
+  color: var(--white);
+  font-weight: 600;
 }
 
 a {
@@ -13,4 +49,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+code, .code {
+  font-family: 'Roboto Mono', monospace;
 }
