@@ -5,7 +5,7 @@ const IndexPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Material-UI-Next</title>
+        <title>Next Spyderbat Console</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
     </>

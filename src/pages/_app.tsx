@@ -1,69 +1,50 @@
-import "../styles/globals.css"
-
+import * as React from "react"
 import { Provider } from "react-redux"
+import Head from "next/head"
+import { ThemeProvider } from "@material-ui/core/styles"
+import { CacheProvider } from "@emotion/react"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import createCache from "@emotion/cache"
 import type { AppProps } from "next/app"
 
 import store from "../app/store"
+import theme from "../theme"
+import Layout from "../components/Layout"
+import "../styles/globals.css"
 
-function MyApp({ Component, pageProps }: AppProps) {
+export const cache = createCache({ key: "css", prepend: true })
+
+export default function MyApp(props: AppProps) {
+  const { Component, pageProps } = props
+
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side")
+    if (jssStyles) {
+      jssStyles.parentElement!.removeChild(jssStyles)
+    }
+  }, [])
+
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <CacheProvider value={cache}>
+        <Layout>
+          <>
+            <Head>
+              <title>My page</title>
+              <meta
+                name="viewport"
+                content="initial-scale=1, width=device-width"
+              />
+            </Head>
+            <ThemeProvider theme={theme}>
+              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+              <CssBaseline />
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </>
+        </Layout>
+      </CacheProvider>
     </Provider>
-  )
-}
-
-export default MyApp
-
-import React from "react"
-import { AppBar, Toolbar, Typography } from "@material-ui/core"
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-import AccountCircleIcon from "@material-ui/icons/AccountCircle"
-import Logo from "../assets/Logo"
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  })
-)
-
-function StorybookAppBar(): JSX.Element {
-  const classes = useStyles()
-
-  // eslint-disable-next-line unicorn/no-null
-  return (
-    <AppBar position="fixed" className={classes.appBar}>
-      <Toolbar
-        variant="dense"
-        style={{
-          paddingLeft: "20px",
-          paddingRight: "20px",
-        }}
-      >
-        <Logo
-          style={{
-            height: "40px",
-            margin: "10px 20px 10px 0px",
-          }}
-        />
-        <Typography variant="h6" className={classes.title}>
-          Weiderbatte
-        </Typography>
-
-        <AccountCircleIcon
-          fontSize="large"
-          style={{ marginLeft: "15px" }}
-          onClick={() => {}}
-        />
-      </Toolbar>
-    </AppBar>
   )
 }
